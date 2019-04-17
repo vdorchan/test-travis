@@ -1,10 +1,16 @@
-before_install:
-- echo '1before_install' uname -a
-install:
-- echo '2install' uname -a
-before_script:
-- echo '3before_script' uname -a
+language: node_js
+node_js:
+- 10
+branches:
+  only:
+  - master
+addons:
+  ssh_known_hosts: vdorchan.com
 script:
-- echo '4script' uname -a
-after_success:
-- echo '5after_success' uname -a
+- rsync -avu --progress --delete . root@vdorchan.com:/srv/www/test-travis/
+before_install:
+- openssl aes-256-cbc -K $encrypted_c6db3232b98f_key -iv $encrypted_c6db3232b98f_iv
+  -in id_rsa.enc -out ~/.ssh/id_rsa -d
+- chmod 600 ~/.ssh/id_rsa
+after_success: 
+- ssh root@vdorchan.com './deploy_shell_script'
