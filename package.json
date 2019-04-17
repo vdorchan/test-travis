@@ -1,0 +1,7 @@
+{
+  "name": "test-travis",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "vdorchan <vdorchan@gmail.com>",
+  "license": "MIT"
+}

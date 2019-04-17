@@ -1,0 +1,10 @@
+before_install:
+- echo '1before_install' uname -a
+install:
+- echo '2install' uname -a
+before_script:
+- echo '3before_script' uname -a
+script:
+- echo '4script' uname -a
+after_success:
+- echo '5after_success' uname -a
